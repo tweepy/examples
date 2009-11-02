@@ -1,6 +1,14 @@
 Tweepy Examples
 ===============
 
+streamwatcher.py
+----------------
+Twitter Streaming API client example.
+
+tweepyshell.py
+--------------
+Python interactive shell for Tweepy.
+
 appengine
 ---------
 Demonstrates using Tweepy along with appengine.
