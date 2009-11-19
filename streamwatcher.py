@@ -9,7 +9,12 @@ import tweepy
 class StreamWatcherListener(tweepy.StreamListener):
 
     def on_status(self, status):
-        print status.text
+        try:
+            print status.text
+        except:
+            # Catch any unicode errors while printing to console
+            # and just ignore them to avoid breaking application.
+            pass
 
     def on_error(self, status_code):
         print 'An error has occured! Status code = %s' % status_code
