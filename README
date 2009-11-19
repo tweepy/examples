@@ -1,13 +1,11 @@
 Tweepy Examples
 ===============
 
+You can find the Tweepy library here: http://github.com/joshthecoder/tweepy
+
 streamwatcher.py
 ----------------
 Twitter Streaming API client example.
-
-tweepyshell.py
---------------
-Python interactive shell for Tweepy.
 
 appengine
 ---------
