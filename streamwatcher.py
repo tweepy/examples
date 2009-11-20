@@ -2,15 +2,22 @@
 
 import time
 from getpass import getpass
+from textwrap import TextWrapper
 
 import tweepy
 
 
 class StreamWatcherListener(tweepy.StreamListener):
 
+    status_wrapper = TextWrapper(width=50, initial_indent='    ', subsequent_indent='    ')
+
+    def print_status(self, text):
+        print '\n'.join(self.status_wrapper.wrap(text))
+
     def on_status(self, status):
         try:
-            print status.text
+            self.print_status(status.text)
+            print '\n %s  %s  via %s\n' % (status.author.screen_name, status.created_at, status.source)
         except:
             # Catch any unicode errors while printing to console
             # and just ignore them to avoid breaking application.
