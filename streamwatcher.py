@@ -23,17 +23,24 @@ class StreamWatcherListener(tweepy.StreamListener):
     def on_timeout(self):
         print 'Snoozing Zzzzzz'
 
-# Prompt for login credentials and setup stream object
-username = raw_input('Twitter username: ')
-password = getpass('Twitter password: ')
-stream = tweepy.Stream(username, password, StreamWatcherListener())
 
-# Prompt for mode of streaming and connect
-while True:
-    mode = raw_input('Mode? [sample/filter] ')
+def main():
+    # Prompt for login credentials and setup stream object
+    username = raw_input('Twitter username: ')
+    password = getpass('Twitter password: ')
+    stream = tweepy.Stream(username, password, StreamWatcherListener(), timeout=None)
+
+    # Prompt for mode of streaming
+    valid_modes = ['sample', 'filter']
+    while True:
+        mode = raw_input('Mode? [sample/filter] ')
+        if mode in valid_modes:
+            break
+        print 'Invalid mode! Try again.'
+
     if mode == 'sample':
         stream.sample()
-        break
+
     elif mode == 'filter':
         follow_list = raw_input('Users to follow (comma separated): ').strip()
         track_list = raw_input('Keywords to track (comma seperated): ').strip()
@@ -45,22 +52,13 @@ while True:
             track_list = [k for k in track_list.split(',')]
         else:
             track_list = None
+
         stream.filter(follow_list, track_list)
-        break
-    else:
-        print 'Invalid choice! Try again.'
 
-# Run in a loop until termination
-while True:
+
+if __name__ == '__main__':
     try:
-        if stream.running is False:
-            print 'Stream stopped!'
-            break
-        time.sleep(1)
+        main()
     except KeyboardInterrupt:
-        break
-
-# Shutdown connection
-stream.disconnect()
-print 'Bye!'
+        print '\nGoodbye!'
 
