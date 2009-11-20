@@ -9,14 +9,11 @@ import tweepy
 
 class StreamWatcherListener(tweepy.StreamListener):
 
-    status_wrapper = TextWrapper(width=50, initial_indent='    ', subsequent_indent='    ')
-
-    def print_status(self, text):
-        print '\n'.join(self.status_wrapper.wrap(text))
+    status_wrapper = TextWrapper(width=60, initial_indent='    ', subsequent_indent='    ')
 
     def on_status(self, status):
         try:
-            self.print_status(status.text)
+            print self.status_wrapper.fill(status.text)
             print '\n %s  %s  via %s\n' % (status.author.screen_name, status.created_at, status.source)
         except:
             # Catch any unicode errors while printing to console
