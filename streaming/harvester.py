@@ -11,6 +11,7 @@ Requires: Tweepy
 """
 
 from optparse import OptionParser
+import os
 from sys import exit
 from tweepy import Stream, StreamListener
 
@@ -26,6 +27,9 @@ class HarvesterListener(StreamListener):
 
 
 def main(options, args):
+
+    if options.pid:
+        open(options.pid, 'w').write(str(os.getpid()))
 
     listener = HarvesterListener(options.file)
 
@@ -51,6 +55,7 @@ if __name__ == '__main__':
     )
     opt.add_option('-f', '--file', dest='file', default='output.json',
 		help='file to write statuses into')
+    opt.add_option('-p', '--pid', dest='pid', help='Write PID to the given file')
 
     options, args = opt.parse_args()
     main(options, args)
