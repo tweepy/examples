@@ -12,6 +12,13 @@ appengine
 Demonstrates using Tweepy along with appengine.
 Currently shows how to implement OAuthHandler properly.
 
+repeater
+--------
+A bot that automatically retweets any tweets in which its name is "mentioned".
+Author: Charles Hooper
+Website: http://code.google.com/p/twitter-repeater
+
+
 Example Contributions
 ---------------------
 If you have an example you would like to offer, please
