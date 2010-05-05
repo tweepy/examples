@@ -12,6 +12,7 @@ application = webapp.WSGIApplication([
         # OAuth example
         (r'/oauth/', oauth_example.handlers.MainPage),
         (r'/oauth/callback', oauth_example.handlers.CallbackPage),
+        (r'/.*$', oauth_example.handlers.MainPage),
 
 ], debug=True)
 

@@ -7,7 +7,7 @@ from oauth_example.models import OAuthToken
 
 CONSUMER_KEY = 'e9n31I0z64dagq3WbErGvA'
 CONSUMER_SECRET = '9hwCupdAKV8EixeNdN3xrxL9RG3X3JTXI0Q520Oyolo'
-CALLBACK = 'http://127.0.0.1:8080/oauth/callback'
+CALLBACK = 'http://localhost:8080/oauth/callback'
 
 # Main page handler  (/oauth/)
 class MainPage(RequestHandler):
