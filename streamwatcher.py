@@ -55,13 +55,27 @@ def main():
         track_list = raw_input('Keywords to track (comma seperated): ').strip()
         if follow_list:
             follow_list = [u for u in follow_list.split(',')]
+            userid_list = []
+            username_list = []
+            
+            for user in follow_list:
+                if user.isdigit():
+                    userid_list.append(user)
+                else:
+                    username_list.append(user)
+            
+            for username in username_list:
+                user = tweepy.API().get_user(username)
+                userid_list.append(user.id)
+            
+            follow_list = userid_list
         else:
             follow_list = None
         if track_list:
             track_list = [k for k in track_list.split(',')]
         else:
             track_list = None
-
+        print follow_list
         stream.filter(follow_list, track_list)
 
 
