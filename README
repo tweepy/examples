@@ -1,7 +1,7 @@
 Tweepy Examples
 ===============
 
-You can find the Tweepy library here: http://github.com/joshthecoder/tweepy
+You can find the Tweepy library here: https://github.com/tweepy/tweepy
 
 streamwatcher.py
 ----------------
