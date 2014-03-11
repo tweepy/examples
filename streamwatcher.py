@@ -30,9 +30,14 @@ class StreamWatcherListener(tweepy.StreamListener):
 
 def main():
     # Prompt for login credentials and setup stream object
-    username = raw_input('Twitter username: ')
-    password = getpass('Twitter password: ')
-    stream = tweepy.Stream(username, password, StreamWatcherListener(), timeout=None)
+    consumer_key = raw_input('Consumer Key: ')
+    consumer_secret = getpass('Consumer Secret: ')
+    access_token = raw_input('Access Token: ')
+    access_token_secret = getpass('Access Token Secret: ')
+
+    auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
 
     # Prompt for mode of streaming
     valid_modes = ['sample', 'filter']
